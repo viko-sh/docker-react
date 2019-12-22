@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true viko2docker/docker-react yarn run test -- --coverage
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-southeast-2
+  app: "d-react"
+  env: "DReact-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-2-617512396426"
+  bucket_path: "d-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
